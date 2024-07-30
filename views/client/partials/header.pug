@@ -1,15 +1,54 @@
+include ../mixins/sub-menu.pug
+
 header.header 
   .container 
     .row.align-items-center
       .col-3 
         .inner-logo 
           a(href="/")
-            img(src="/images/logo.jpg", alt="Logo")
+            img(src=settingGeneral.logo, alt=settingGeneral.websiteName)
 
-      .col-9 
+      .col-5 
+       form(
+        action="/search"
+        method="GET"
+       )
+        div(class="form-group d-flex mb-0")
+         input(
+          type="text"
+          placeholder="Nhap tu khoa..."
+          class="form-control"
+          name="keyword"
+          value=keyword
+         )
+         button(
+          type="submit"
+          class="btn btn-primary"
+         ) Tim
+
+      .col-4
         .inner-menu
           ul
             li 
               a(href="/") Home
-            li 
+            li(class="sub-menu")
+              -const pathProduct = "/products";
               a(href="/products") San pham 
+               +sub-menu(layoutProductsCategory,pathProduct)
+
+            li 
+             a(href="/cart") Gio hang (#{miniCart ? miniCart.totalQuantity : 0})
+            if(user)
+              li 
+                a(href="/user/info") #{user.fullName}
+              li 
+                a(href="/users/friends") Ban be 
+              li 
+                a(href="/rooms-chat") Phong chat   
+              li 
+                a(href="/user/logout") Dang xuat
+            else     
+              li 
+                a(href="/user/register") Dang ky
+              li 
+                a(href="/user/login") Dang nhap 

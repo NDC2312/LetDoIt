@@ -1,0 +1,22 @@
+mixin sort()
+ .card.mb-3 
+     .card-header Sap Xep 
+     .card-body 
+      .row 
+       .col-4 
+        div(sort)
+         select(
+          class="form-control"
+          name="sort"
+          sort-select 
+         )
+          option(value="position-desc") Vi Tri Giam Dan
+          option(value="position-asc") Vi Tri tang Dan
+          option(value="price-desc") Gia Giam Dan
+          option(value="price-asc") Gia Tang Dan
+          option(value="title-asc") Tieu de A - Z
+          option(value="title-desc") Tieu de Z - A
+         button(
+          class="btn btn-danger mt-2"
+          sort-clear 
+         ) Clear

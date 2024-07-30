@@ -2,6 +2,21 @@
  .inner-menu 
   ul 
    li 
-    a(href=`${prefixAdmin}/dashboard`) Tong Quan 
+    a(href=`${prefixAdmin}/dashboard`) Tong Quan
+   if(role.permissions.includes("products-category_view")) 
+    li 
+     a(href=`${prefixAdmin}/products-category`) Danh muc san pham
+   if(role.permissions.includes("products_view")) 
+    li 
+     a(href=`${prefixAdmin}/products`) Danh sach san pham
+   if(role.permissions.includes("roles_view")) 
+    li 
+     a(href=`${prefixAdmin}/roles`) Nhom quyen
+   if(role.permissions.includes("roles_permissions")) 
+    li 
+     a(href=`${prefixAdmin}/roles/permissions`) Phan quyen 
+   if(role.permissions.includes("accounts_view")) 
+    li 
+     a(href=`${prefixAdmin}/accounts`) Danh sach tai khoan 
    li 
-    a(href=`${prefixAdmin}/products`) San Pham
+     a(href=`${prefixAdmin}/settings/general`) Cai dat chung    

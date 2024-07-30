@@ -1,0 +1,35 @@
+extends ../../layouts/default.pug
+include ../../mixins/table-tree.pug
+
+block main 
+   if(role.permissions.includes("products-category_view")) 
+    h1 Trang Danh sach san pham
+
+    .card.mb-3 
+     .card-header Danh Sach 
+      .card-body
+       .row 
+        .col-8 
+        .col-4 
+         if(role.permissions.includes("products-category_create")) 
+          a(
+              href=`${prefixAdmin}/products-category/create`
+              class="btn btn-outline-success"
+          ) + Add new
+          
+    table(
+      class="table table-hover table-sm"
+      check-multi
+    ) 
+     thead 
+      tr 
+       th 
+        input(type="checkbox" name="checkall")
+       th STT 
+       th Hinh Anh 
+       th Tieu De 
+       th vi tri san pham
+       th Trang Thai 
+       th Hanh Dong 
+     tbody 
+      +table-tree(records)   
