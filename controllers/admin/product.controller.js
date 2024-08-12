@@ -13,15 +13,12 @@ const ProductCategory = require("../../models/product-category.model");
 // get all
 module.exports.index = async (req, res) => {
   const filterStatus = filterStatusHelpers(req.query);
-
   let find = {
     deleted: false,
   };
-
   if (req.query.status) {
     find.status = req.query.status;
   }
-
   const objectSearch = searchHelpers(req.query);
 
   if (objectSearch.regex) {
@@ -30,7 +27,6 @@ module.exports.index = async (req, res) => {
 
   // Pagination
   const countProduct = await Product.countDocuments(find);
-
   let objectPagination = paginationHelpers(
     {
       currentPage: 1,
@@ -40,6 +36,7 @@ module.exports.index = async (req, res) => {
     countProduct
   );
   // end pagination
+
   // sort
   let sort = {};
   if (req.query.sortKey && req.query.sortValue) {
@@ -47,9 +44,7 @@ module.exports.index = async (req, res) => {
   } else {
     sort.position = "desc";
   }
-
   // end sort
-
   const products = await Product.find(find)
     .sort(sort)
     .limit(objectPagination.limitItems)

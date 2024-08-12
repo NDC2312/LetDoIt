@@ -18,6 +18,8 @@ block main
     .row 
      .col-8 
       +form-change-multi(`${prefixAdmin}/products/change-multi?_method=PATCH`)
+      +filter-status(filterStatus)
+      +search(keyword)
      .col-4 
       a(
         href=`${prefixAdmin}/products/create`
